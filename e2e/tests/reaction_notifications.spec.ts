@@ -2,7 +2,8 @@ import {expect, test, type Page} from '@playwright/test';
 
 import {api, login, newSession, TEAM, waitFor} from './helpers';
 
-const CATEGORY = 'pp_dev.patika.reaction-notifications';
+// Mattermost cuts plugin preference categories to 32 characters.
+const CATEGORY = 'pp_dev.patika.reaction-notifications'.slice(0, 32);
 
 async function setNotify(page: Page, value: string) {
     const me = await api(page, 'GET', '/users/me');

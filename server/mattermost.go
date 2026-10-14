@@ -8,9 +8,18 @@ import (
 	"github.com/pkg/errors"
 )
 
-// PreferenceName is where Settings → Reaction Notifications stores the choice; the web app's
-// registerUserSettings saves it under category pp_<plugin id>.
+// PreferenceName is where Settings → Reaction Notifications stores the choice.
 const PreferenceName = "notify"
+
+// preferenceCategory matches the web app's getPluginPreferenceKey: "pp_" + plugin ID, cut to
+// the 32 characters a preference category may have ("pp_dev.patika.reaction-notificat").
+func preferenceCategory(pluginID string) string {
+	category := "pp_" + pluginID
+	if len(category) > 32 {
+		category = category[:32]
+	}
+	return category
+}
 
 // mattermostAdapter implements reactions.Mattermost on top of the plugin API.
 type mattermostAdapter struct {
@@ -34,7 +43,7 @@ func (a mattermostAdapter) GetChannelMember(channelID, userID string) (*model.Ch
 }
 
 func (a mattermostAdapter) Preference(userID string) string {
-	pref, appErr := a.p.API.GetPreferenceForUser(userID, "pp_"+manifest.Id, PreferenceName)
+	pref, appErr := a.p.API.GetPreferenceForUser(userID, preferenceCategory(manifest.Id), PreferenceName)
 	if appErr != nil {
 		return ""
 	}

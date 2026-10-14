@@ -5,8 +5,8 @@ import manifest from 'manifest';
 
 import type {PluginConfiguration} from 'types/mattermost-webapp';
 
-// Settings → Reaction Notifications. Mattermost saves the choice as a preference
-// (category pp_<plugin id>, name "notify"), which the server reads before sending.
+// Settings → Reaction Notifications. Mattermost saves the choice as a preference (category
+// "pp_<plugin id>" cut to 32 characters, name "notify"), which the server reads before sending.
 export function userSettings(basename = ''): PluginConfiguration {
     return {
         id: manifest.id,
