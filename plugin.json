@@ -1,0 +1,26 @@
+{
+    "id": "dev.patika.reaction-notifications",
+    "name": "Reaction Notifications",
+    "description": "Get notified when someone reacts to your message — grouped, with a link, and easy to turn off.",
+    "homepage_url": "https://github.com/PatikaDev/mattermost-plugin-reaction-notifications",
+    "support_url": "https://github.com/PatikaDev/mattermost-plugin-reaction-notifications/issues",
+    "icon_path": "assets/reaction-notifications-icon.svg",
+    "min_server_version": "10.11.0",
+    "server": {
+        "executables": {
+            "linux-amd64": "server/dist/plugin-linux-amd64",
+            "linux-arm64": "server/dist/plugin-linux-arm64",
+            "darwin-amd64": "server/dist/plugin-darwin-amd64",
+            "darwin-arm64": "server/dist/plugin-darwin-arm64",
+            "windows-amd64": "server/dist/plugin-windows-amd64.exe"
+        }
+    },
+    "webapp": {
+        "bundle_path": "webapp/dist/main.js"
+    },
+    "settings_schema": {
+        "header": "",
+        "footer": "",
+        "settings": []
+    }
+}
